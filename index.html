@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <main class="main-container">
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button class="close-settings" id="closeSettings">×</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-item">
+                    <label>Temperature Unit</label>
+                    <div class="unit-toggle">
+                        <button class="unit-btn active" data-unit="celsius">°C</button>
+                        <button class="unit-btn" data-unit="fahrenheit">°F</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label>Theme</label>
+                    <div class="theme-toggle">
+                        <button class="theme-btn active" data-theme="auto">Auto</button>
+                        <button class="theme-btn" data-theme="light">Light</button>
+                        <button class="theme-btn" data-theme="dark">Dark</button>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label>Animations</label>
+                    <div class="animation-toggle">
+                        <button class="animation-btn active" data-animation="on">On</button>
+                        <button class="animation-btn" data-animation="off">Off</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header class="app-header">
+            <div class="header-controls">
+                <button class="control-btn" id="locationBtn" title="Get Current Location">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="3,11 22,2 13,21 11,13 3,11"></polygon>
+                    </svg>
+                </button>
+                <button class="control-btn" id="favoritesBtn" title="Favorites">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                    </svg>
+                </button>
+                <button class="control-btn" id="settingsBtn" title="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m15.5-3.5L19 4.5M5 19.5L7.5 17M19 19.5L16.5 17M5 4.5L7.5 7"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+
+        <div class="search-section">
+            <div class="input-container">
+                <input class="city-input" type="text" placeholder="Search city name" id="cityInput">
+                <button class="search-button" id="searchButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            
+            <div class="quick-cities" id="quickCities"></div>
+            
+            
+            <div class="favorites-container" id="favoritesContainer" style="display: none;">
+                <h4>Favorite Locations</h4>
+                <div class="favorites-list" id="favoritesList"></div>
+            </div>
+        </div>
+
+        
+        <div class="weather-animation" id="weatherAnimation"></div>
+        
+        
+        <section class="weather-info">
+            <div class="location-date-container">
+                <div class="location">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/>
+                    </svg>
+                    <div class="location-info">
+                        <h4 class="country-text" id="locationText">Kaduna</h4>
+                        <button class="favorite-toggle" id="favoriteToggle" title="Add to Favorites">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="date-time-info">
+                    <h5 class="current-date-text regular-text" id="dateText">Today</h5>
+                    <h5 class="current-time-text" id="timeText">12:00 PM</h5>
+                </div>
+            </div>
+            
+            <div class="weather-summary-container">
+                <img class="weather-icon" id="weatherIcon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="Weather icon">
+                <div class="weather-summary-info">
+                    <h1 class="temperature-text" id="temperatureText">25°C</h1>
+                    <h3 class="condition-text regular-text" id="conditionText">Cloudy</h3>
+                    <h4 class="feels-like-text" id="feelsLikeText">Feels like 27°C</h4>
+                </div>
+            </div>
+            
+        
+            <div class="weather-details-grid">
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M491-200q12-1 20.5-9.5T520-230q0-14-9-22.5t-23-7.5q-41 3-87-22.5T343-375q-2-11-10.5-18t-19.5-7q-14 0-23 10.5t-6 24.5q17 91 80 130t127 35ZM480-80q-137 0-228.5-94T160-408q0-100 79.5-217.5T480-880q161 137 240.5 254.5T800-408q0 140-91.5 234T480-80Zm0-80q104 0 172-70.5T720-408q0-73-60.5-165T480-774Q361-665 300.5-573T240-408q0 107 68 177.5T480-160Zm0-320Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>Humidity</h5>
+                        <h5 id="humidityText">44%</h5>
+                    </div>
+                </div>
+                
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M460-160q-50 0-85-35t-35-85h80q0 17 11.5 28.5T460-240q17 0 28.5-11.5T500-280q0-17-11.5-28.5T460-320H80v-80h380q50 0 85 35t35 85q0 50-35 85t-85 35ZM80-560v-80h540q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43h-80q0-59 40.5-99.5T620-840q59 0 99.5 40.5T760-700q0 59-40.5 99.5T620-560H80Zm660 320v-80q26 0 43-17t17-43q0-26-17-43t-43-17H80v-80h660q59 0 99.5 40.5T880-380q0 59-40.5 99.5T740-240Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>Wind Speed</h5>
+                        <h5 id="windText">2 M/s</h5>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>UV Index</h5>
+                        <h5 id="uvText">5 Moderate</h5>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-40-82v-78q-33 0-56.5-23.5T360-320v-40L168-552q-3 18-5.5 36t-2.5 36q0 121 79.5 212T440-162Zm276-102q20-22 36-47.5t26.5-53q10.5-27.5 16-56.5t5.5-59q0-98-54.5-179T600-776v16q0 33-23.5 56.5T520-680h-80v80q0 17-11.5 28.5T400-560h-80v80h240q17 0 28.5 11.5T600-440v120h40q26 0 47 15.5t29 40.5Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>Pressure</h5>
+                        <h5 id="pressureText">1013 hPa</h5>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-180Zm0 100q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29Zm0 200q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>Visibility</h5>
+                        <h5 id="visibilityText">10 km</h5>
+                    </div>
+                </div>
+
+                <div class="detail-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white">
+                        <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-678q0 90 63 153t153 63q32 0 62-9t58-25q1 17 1.5 33.5T782-434q0 150-105 255T480-120Z"/>
+                    </svg>
+                    <div class="detail-info">
+                        <h5>Sunrise</h5>
+                        <h5 id="sunriseText">6:30 AM</h5>
+                    </div>
+                </div>
+            </div>
+            
+    
+            <div class="hourly-forecast-container">
+                <h3>24-Hour Forecast</h3>
+                <div class="hourly-forecast-scroll" id="hourlyForecast">
+                    
+                </div>
+            </div>
+
+        
+            <div class="forecast-item-container">
+                <h3>7-Day Forecast</h3>
+                <div class="forecast-list" id="forecastList">
+                
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="script-enhanced.js"></script>
+</body>
+</html>

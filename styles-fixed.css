@@ -1,0 +1,479 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Miniver&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  color: black;
+  font-weight: 500;
+}
+
+body {
+  background: url("cloudy-background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  background-position: center;
+  color: black;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 20px;
+  background-color: black;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 15, 15, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 0;
+}
+
+.regular-text {
+  font-weight: 400;
+}
+
+.main-container {
+  position: relative;
+  width: 350px;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(70, 78, 82, 0.2), rgba(59, 51, 51, 0.1));
+  border-radius: 30px;
+  backdrop-filter: blur(25px);
+  padding: 25px;
+  border: 1px solid rgba(14, 13, 13, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 25px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.city-input {
+  flex: 1;
+  height: 50px;
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  outline: none;
+  font-weight: 500;
+  transition: 0.25s border;
+  font-size: 14px;
+}
+
+.city-input:focus {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.city-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-button {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s all;
+}
+
+.search-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.location-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.location svg {
+  width: 20px;
+  height: 20px;
+}
+
+.country-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.current-date-text {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.weather-summary-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.weather-icon {
+  width: 120px;
+  height: 120px;
+}
+
+.weather-summary-info {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.temperature-text {
+  font-size: 48px;
+  font-weight: 300;
+  margin: 0;
+}
+
+.condition-text {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.weather-conditions-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.condition-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.condition-item svg {
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
+}
+
+.condition-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.condition-info h5:first-child {
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.condition-info h5:last-child {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.forecast-item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.forecast-item-container h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.forecast-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.forecast-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.forecast-item-date {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.forecast-item-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.forecast-item-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.forecast-item:hover .forecast-item-icon {
+  transform: scale(1.1);
+}
+
+.forecast-item-temp {
+  font-size: 16px;
+  font-weight: 600;
+  min-width: 45px;
+  text-align: right;
+}
+
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .main-container {
+    width: 95%;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .input-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .city-input {
+    width: 100%;
+    height: 45px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .search-button {
+    width: 100%;
+    height: 45px;
+    border-radius: 22px;
+  }
+
+  .weather-summary-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .weather-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .weather-summary-info {
+    text-align: center;
+  }
+
+  .temperature-text {
+    font-size: 36px;
+  }
+
+  .condition-text {
+    font-size: 16px;
+  }
+
+  .weather-conditions-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .condition-item {
+    padding: 12px;
+  }
+
+  .country-text {
+    font-size: 16px;
+  }
+
+  .current-date-text {
+    font-size: 12px;
+  }
+
+  .forecast-item-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .forecast-item-right {
+    gap: 10px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .main-container {
+    width: 400px;
+    padding: 30px;
+  }
+
+  .temperature-text {
+    font-size: 52px;
+  }
+
+  .weather-icon {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-container {
+    width: 450px;
+    padding: 35px;
+  }
+
+  .temperature-text {
+    font-size: 56px;
+  }
+
+  .weather-icon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .weather-conditions-container {
+    gap: 20px;
+  }
+
+  .condition-item {
+    padding: 18px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .main-container {
+    width: 500px;
+    padding: 40px;
+  }
+
+  .temperature-text {
+    font-size: 60px;
+  }
+
+  .weather-icon {
+    width: 150px;
+    height: 150px;
+  }
+
+  .weather-conditions-container {
+    gap: 25px;
+  }
+
+  .condition-item {
+    padding: 20px;
+  }
+
+  .forecast-item {
+    padding: 18px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  body {
+    padding: 5px;
+  }
+
+  .main-container {
+    min-height: auto;
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 15px;
+  }
+
+  .weather-summary-container {
+    margin-bottom: 15px;
+  }
+
+  .weather-conditions-container {
+    margin-bottom: 15px;
+  }
+
+  .temperature-text {
+    font-size: 32px;
+  }
+
+  .weather-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .forecast-item-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .weather-icon,
+  .forecast-item-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Accessibility - Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .main-container {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+  }
+}
